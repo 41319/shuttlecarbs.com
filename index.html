@@ -1,1 +1,373 @@
-shuttlecarbs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor NCS Pro | ShuttleCarbs.com</title>
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary: #00f2ff; /* Cyan for tech feel */
+            --secondary: #ff3e3e; /* Victor Red accent */
+            --bg-dark: #0a0a0a;
+            --bg-card: #161616;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .logo span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        .btn-buy {
+            background: var(--primary);
+            color: var(--bg-dark);
+            padding: 0.6rem 1.5rem;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+        .btn-buy:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 70%);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, #999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-image-placeholder {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #333, #111);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--text-muted);
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.15);
+        }
+        
+        /* Simulating a shuttlecock visually with CSS for the placeholder */
+        .hero-image-placeholder::after {
+
+        }
+
+        /* --- FEATURES GRID --- */
+        .features {
+            padding: 5rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .section-header p { color: var(--text-muted); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .card h3 { margin-bottom: 1rem; font-size: 1.25rem; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- TECH SPECS --- */
+        .specs {
+            background: #111;
+            padding: 5rem 5%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .specs-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border: 1px dashed #333;
+        }
+
+        .specs-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .specs-list {
+            margin-top: 2rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .spec-item span:first-child { color: var(--text-muted); }
+        .spec-item span:last-child { font-weight: 700; color: #fff; }
+
+        /* --- CTA SECTION --- */
+        .cta-section {
+            padding: 6rem 5%;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #0d1f21 100%);
+        }
+
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        .price-sub { font-size: 1rem; color: var(--text-muted); display: block; margin-top: -10px; margin-bottom: 2rem; }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .hero { padding-top: 80px; height: auto; padding-bottom: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Shuttle<span>Carbs</span></div>
+        <div class="nav-links">
+            <a href="#features">Technology</a>
+            <a href="#specs">Specs</a>
+            <a href="#reviews">Reviews</a>
+        </div>
+        <a href="#buy" class="btn-buy">Buy Now</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">New Arrival</span>
+            
+            <div class="hero-image-placeholder">
+                <img height="300px" width="300px" src="https://img.lazcdn.com/g/p/c64a4fad2d74179281bb1bda757c74d5.jpg" alt="Victor NCS Pro Shuttlecock" style="border-radius: 50%; opacity: 0.8;">
+            </div>
+
+            <h1>The Carbon Fiber Revolution</h1>
+            <p>Experience the Victor NCS Pro. The durability of carbon fiber meets the flight of natural feathers. The future of badminton is here.</p>
+            <a href="#buy" class="btn-buy" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Shop Now</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Engineered for Perfection</h2>
+            <p>Why the NCS Pro is replacing feathers in clubs worldwide.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="icon">⬡</div>
+                <h3>Carbon Fiber Stem</h3>
+                <p>Patented carbon composite shaft provides incredible tensile strength, preventing the breakage common in traditional feather shuttles.</p>
+            </div>
+            <div class="card">
+                <div class="icon">✈️</div>
+                <h3>Feather-Like Flight</h3>
+                <p>Aerodynamic testing proves a flight trajectory that mimics natural goose feathers, ensuring your drops and clears land exactly where you intend.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🛡️</div>
+                <h3>Extreme Durability</h3>
+                <p>One tube of NCS Pro outlasts 3 tubes of standard feather shuttles. Play longer, spend less, and reduce waste.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🔊</div>
+                <h3>Crisp Acoustics</h3>
+                <p>The composite cork head delivers a satisfying, sharp sound on impact, giving you instant feedback on every smash.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="specs" class="specs">
+        <div class="specs-image">
+            <img height="400px" width="500px" src="https://img.lazcdn.com/g/p/c64a4fad2d74179281bb1bda757c74d5.jpg" alt="Technical Diagram" style="max-width: 100%; border-radius: 8px;">
+        </div>
+        <div class="specs-content">
+            <span class="badge" style="margin-bottom: 0.5rem;">Technical Data</span>
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Victor NCS Pro Specifications</h2>
+            <p style="color: var(--text-muted);">The New CarbonSonic (NCS) utilizes a hybrid construction method to achieve optimal center of gravity and balance.</p>
+            
+            <div class="specs-list">
+                <div class="spec-item">
+                    <span>Model</span>
+                    <span>Victor NCS Pro</span>
+                </div>
+                <div class="spec-item">
+                    <span>Stem Material</span>
+                    <span>Carbon Fiber Composite</span>
+                </div>
+                <div class="spec-item">
+                    <span>Feather Material</span>
+                    <span>High-Grade LDPE Foam</span>
+                </div>
+                <div class="spec-item">
+                    <span>Base Material</span>
+                    <span>Natural/Composite Cork</span>
+                </div>
+                <div class="spec-item">
+                    <span>Speed Options</span>
+                    <span>77 (Medium)</span>
+                </div>
+                <div class="spec-item">
+                    <span>Flight Stability</span>
+                    <span>A+ Rated</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="buy" class="cta-section">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Upgrade Your Game</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Stop throwing money away on broken feathers. Switch to ShuttleCarbs.</p>
+        <div class="price-tag"><s>$35.00</s></div>
+        <div class="price-tag"> $31.00 <span style="font-size: 1.5rem; color: #fff;">/ dozen</span></div>
+        <span class="price-sub">Free shipping on orders over $50</span>
+
+        <a href="#" class="btn-buy" style="padding: 1rem 3rem; font-size: 1.2rem;">Add to Cart</a>
+        
+        <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 2rem; color: var(--text-muted); font-size: 0.8rem;">
+            <span>✓ 100% Authentic Victor</span>
+            <span>✓ Secure Checkout</span>
+            <span>✓ Fast Delivery</span>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="margin-bottom: 1rem;">Shuttle<span>Carbs</span></div>
+        <p>&copy; 2025 ShuttleCarbs.com. All rights reserved.</p>
+
+    </footer>
+
+</body>
+</html>
